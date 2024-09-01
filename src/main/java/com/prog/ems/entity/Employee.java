@@ -17,6 +17,17 @@ public class Employee {//map java objects to tables in rdbms
 	
 	
 	
+	public Employee(Long id2, String firstName2, String lastName2, String email2) {
+		// TODO Auto-generated constructor stub
+		this.id=id2;
+		this.firstName=firstName2;
+		this.lastName=lastName2;
+		this.email=email2;
+	}
+	//no argument constructor
+	public Employee() {
+	
+	}
 	public Long getId() {
 		return id;
 	}
