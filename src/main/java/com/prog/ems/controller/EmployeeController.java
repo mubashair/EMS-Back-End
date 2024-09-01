@@ -1,11 +1,14 @@
 package com.prog.ems.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +31,18 @@ public class EmployeeController {
 	@GetMapping("{id}")
 	ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable(name = "id") Long EmployeeId){
 		EmployeeDTO employeeDTO = employeeService.getEmployeeById(EmployeeId);
+		return ResponseEntity.ok(employeeDTO);
+	}
+	//Build Get ALl Employees REST API
+	@GetMapping
+	public ResponseEntity<List<EmployeeDTO>> getAllEmployees(){
+		List<EmployeeDTO> employees = employeeService.findAllEmployees();
+		return ResponseEntity.ok(employees);
+	}
+	//Build update Employee REST API
+	@PutMapping({"{id}"})
+	ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable(name = "id") Long employeeId, @RequestBody EmployeeDTO updatedEmployee){
+		EmployeeDTO employeeDTO = employeeService.updateEmployee(employeeId, updatedEmployee);
 		return ResponseEntity.ok(employeeDTO);
 	}
 }
